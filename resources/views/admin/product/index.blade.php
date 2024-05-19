@@ -3,36 +3,6 @@
 @section('content')
 <div class="container mt-4">
     @role('Admin')
-        <!-- Filtres -->
-        <div class="row mt-4">
-            <div class="col-md-12">
-                <h5>Filtrer par :</h5>
-                <form action="{{ route('admin.product.index') }}" method="get">
-                    <div class="form-row row">
-                        <div class="form-group col">
-                            <label for="inputPrice">Prix :</label>
-                            <select id="inputPrice" class="form-control" name="price">
-                                <option value="asc">Croissant</option>
-                                <option value="desc">Décroissant</option>
-                            </select>
-                        </div>
-                        <div class="form-group col">
-                            <label for="inputCategory">Catégorie :</label>
-                            <select id="inputCategory" class="form-control" name="category">
-                                <option value="">Toutes les Catégories</option>
-                                @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-3">Appliquer</button>
-                </form>
-            </div>
-        </div>
-
-        <hr>
-
         <div class="container">
             <h1>Liste des Produits</h1>
             <a href="{{ route('admin.product.create') }}" class="btn btn-success mb-3">Ajouter un produit</a>

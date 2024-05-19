@@ -21,7 +21,7 @@ class ContactController extends Controller
 
         // Enregistrement des données dans la base de données ou envoi d'un e-mail, etc.
 
-        // Redirection avec un message de confirmation
+        
         return redirect()->route('contact.form')->with('success', 'Votre message a été envoyé avec succès ! Nous vous répondrons dès que possible.');
     }
 }
