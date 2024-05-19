@@ -13,7 +13,6 @@ class OrderController extends Controller
 {
     public function index(Request $request)
     {
-        // $products = Product::where('category_id', $categoryId)->get() : Product::all();
         $userOrders = auth()->user()->orders()->latest()->paginate(10);
 
         return view('order.index', [
@@ -72,9 +71,15 @@ class OrderController extends Controller
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['total_amount'] = $totalAmount;
 
-        // dd($validatedData);
+        $order = Order::create($validatedData);
 
-        Order::create($validatedData);
+        // Ajouter les produits à la commande
+        foreach ($cart as $productId => $item) {
+            $order->products()->attach($productId, ['quantity' => $item['quantity'], 'price' => $item['price']]);
+        }
+
+        // Vider le panier après la commande
+        $request->session()->forget('cart');
 
         return redirect()->route('order.index')->with('success', 'Commande enregistrée');
     }

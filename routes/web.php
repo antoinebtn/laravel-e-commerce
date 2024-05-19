@@ -54,18 +54,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/product/create', [ProductController::class, 'create'])->name('admin.product.create');
         Route::post('/product/store', [ProductController::class, 'store'])->name('admin.product.store');
         Route::delete('/product/{id}/delete', [ProductController::class, 'delete'])->name('admin.product.delete');
+
+        Route::get('/orders', [OrderController::class, 'adminIndex'])->name('admin.order.index');
     });
 });
-    
-
-
-
-
-//     Route::any('/contact/send', [HomeController::class, 'postContact'])->name('home.contact_us.send'); // Envoie un message de contact
-
-//     Route::post('/cart/checkCoupon', [CartController::class, 'checkCoupon'])->name('cart.checkCoupon'); // Vérifie un coupon
-//     Route::get('/cart/removeCoupon', [CartController::class, 'removeCoupon'])->name('cart.removeCoupon'); // Retire un coupon
-
-
-//     Route::post('/checkout-validate', [CheckoutController::class, 'checkoutValidate'])->name('checkout.validate'); // Validation du panier
- 

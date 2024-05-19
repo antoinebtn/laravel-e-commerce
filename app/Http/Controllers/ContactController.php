@@ -11,10 +11,8 @@ class ContactController extends Controller
         return view('contact.form');
     }
 
-    // Soumettre le formulaire de contact
     public function submit(Request $request)
     {
-        // Validation des données du formulaire
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',

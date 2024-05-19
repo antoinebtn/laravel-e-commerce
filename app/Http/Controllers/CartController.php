@@ -42,7 +42,6 @@ class CartController extends Controller
 
         session(['cart' => $cart]);
 
-        // Rediriger l'utilisateur vers la page de panier
         return redirect()->route('cart.index');
     }
 
@@ -51,7 +50,6 @@ class CartController extends Controller
         $productId = $request->input('product_id');
         $cart = session()->get('cart', []);
 
-        // Supprimer le produit du panier
         if ($cart[$productId]['quantity'] === 1) {
             unset($cart[$productId]);
         } else {
@@ -61,7 +59,6 @@ class CartController extends Controller
 
         session(['cart' => $cart]);
 
-        // Redirection vers la page de panier
         return redirect()->route('cart.index');
     }
 
@@ -74,7 +71,6 @@ class CartController extends Controller
 
         session(['cart' => $cart]);
 
-        // Redirection vers la page de panier
         return redirect()->route('cart.index');
     }
 
