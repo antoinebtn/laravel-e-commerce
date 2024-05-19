@@ -22,6 +22,7 @@ class Order extends Model
         'card_name',
         'user_id',
         'total_amount',
+        'status',
     ];
 
     public function products()

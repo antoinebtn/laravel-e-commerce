@@ -47,7 +47,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/order/{order}', [OrderController::class, 'show'])->name('order.show');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-    Route::get('/profile/orders-history', [ProfileController::class, 'showOrders'])->name('profile.orders');
+    Route::get('/profile/orders-history', [OrderController::class, 'index'])->name('profile.orders');
+    
     Route::prefix('admin')->group(function(){
         Route::get('/', [AdminController::class, 'index'])->name('admin.index');
         Route::get('/products', [ProductController::class, 'adminIndex'])->name('admin.product.index');
@@ -55,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/product/store', [ProductController::class, 'store'])->name('admin.product.store');
         Route::delete('/product/{id}/delete', [ProductController::class, 'delete'])->name('admin.product.delete');
 
+        Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus'])->name('admin.orders.updateStatus');
         Route::get('/orders', [OrderController::class, 'adminIndex'])->name('admin.order.index');
     });
 });

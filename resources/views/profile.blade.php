@@ -9,5 +9,7 @@
     <hr>
 
     <h3>Mes commandes :</h3>
+
+    <a href="{{ route('order.index') }}">Mes dernières commandes</a>
 </div>
 @endsection

@@ -93,7 +93,6 @@ class ProductController extends Controller
 
     public function filter(Request $request)
     {
-        // Récupérer les critères de filtrage depuis la requête
         $price = $request->input('price');
         $category = $request->input('category');
         $categories = Category::all();

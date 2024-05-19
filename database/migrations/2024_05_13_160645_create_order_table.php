@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('card_expiration_date');
             $table->string('cryptogramme');
             $table->string('card_name');
+            $table->string('status');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->decimal('total_amount', 10, 2);

@@ -35,7 +35,15 @@
         </form>
     </div>
     @else
-        <a href="">Se connecter en tant qu'admin</a>
+    <a class="btn btn-danger" href="{{ route('logout') }}"
+        onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();">
+            Se connecter en tant qu'admin
+    </a>
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+    </form>
     @endrole
 
 </div>

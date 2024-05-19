@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Enums\StatusEnum;
 
 use Auth;
 
@@ -18,6 +19,26 @@ class OrderController extends Controller
         return view('order.index', [
             'orders' => $userOrders
         ]);
+    }
+
+    public function adminIndex()
+    {
+        $orders = Order::paginate(10);
+        return view('admin.order.index', [
+            'orders' => $orders
+        ]);
+    }
+
+    public function updateStatus(Request $request, Order $order)
+    {
+        $request->validate([
+            'status' => 'required|in:pending,processed',
+        ]);
+
+        $order->status = $request->input('status') === 'pending' ? StatusEnum::WAITING->value : StatusEnum::ACCEPTED->value;
+        $order->save();
+
+        return redirect()->route('admin.order.index')->with('success', 'Statut de la commande mis à jour avec succès.');
     }
 
     public function show(string $id)
@@ -70,6 +91,7 @@ class OrderController extends Controller
 
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['total_amount'] = $totalAmount;
+        $validatedData['status'] = StatusEnum::WAITING->value;
 
         $order = Order::create($validatedData);
 
